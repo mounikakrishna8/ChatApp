@@ -1,17 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Input from "../components/Input.jsx";
-import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
-import CallImage from "../components/CallImage.jsx";
+import Input from "../../components/Input";
+import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined.js";
 import {
   fetchMessages,
   createMessage,
-} from "../redux/actions/messageActions.js";
+} from "../../redux/actions/messageActions";
 import axios from "axios";
-import socket from "../socket.js";
-import UserIcon from "./UserIcon.jsx";
+import socket from "../../socket.js";
+import UserIcon from "../../components/UserIcon";
+import CallImage from "../../components/CallImage";
 
-const Messages = () => {
+const ResChatPage = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.message.messages);
   const selectedChatId = useSelector((state) => state.chat.selectedChatId);
@@ -21,8 +21,7 @@ const Messages = () => {
   const friendsUsername = useSelector((state) => state.friend.friendUsername);
   const friendsList = useSelector((state) => state.friend.friendsList);
   const chats = useSelector((state) => state.chat.chats);
-  console.log("messages:", messages);
-  //useEffect to get the chat
+
   useEffect(() => {
     if (selectedChatId) {
       axios
@@ -38,7 +37,6 @@ const Messages = () => {
   const selectedChat = chats.find((chat) => {
     return chat.chatId === selectedChatId;
   });
-  console.log("selectedChat:", selectedChat);
 
   useEffect(() => {
     const handleMessageReceive = (data) => {
@@ -54,7 +52,6 @@ const Messages = () => {
     };
   }, [dispatch]);
 
-  //handleSendMessage function
   const handleSendMessage = async (e) => {
     e.preventDefault();
     try {
@@ -82,31 +79,17 @@ const Messages = () => {
       })
       .catch((error) => console.error("Error fetching messages:", error));
   };
-  console.log("messages:", messages);
+
   return (
-    <div className="bg-white lg:w-2/3 lg:h-screen lg:flex lg:flex-col lg:justify-center lg:items-center md: hidden">
-      {/* other user display */}
-      <div className=" fixed top-4 w-[48%] h-[80px] bg-gray-100  rounded-full  flex justify-evenly items-center">
-        {/* <div className=" cursor-pointer">
-          <img
-            className=" w-[50px] rounded-full"
-            src="https://imgur.com/va1mKO4.png"
-          />
-        </div> */}
+    <main className="bg-white w-full h-screen flex flex-col justify-center items-center ">
+      <div className="fixed top-4 w-full h-[80px] bg-gray-100 rounded-full flex items-center justify-center">
+        <section>
+          <UserIcon userId={selectedChatId?.user?.userId} />
+        </section>
         <div>
-          <UserIcon userId={selectedChat?.user?.userId} />
-        </div>
-        <div>
-          <h3 className=" text-lg font-medium">{friendsUsername}</h3>
-        </div>
-        {/* call button */}
-        <div>
-          <button>
-            <CallImage />
-          </button>
+          <h3 className="text-lg font-medium">{friendsUsername}</h3>
         </div>
       </div>
-      {/* messages display area */}
       <div className="h-[80%] mt-8 w-full  border-b overflow-y-auto">
         <div className="p-14">
           {messages.length > 0 ? (
@@ -140,8 +123,6 @@ const Messages = () => {
           )}
         </div>
       </div>
-
-      {/* input for message */}
       <div className="fixed bottom-2  flex items-center w-96 ">
         <Input
           className=" w-[100%]  ml-1.5 border  "
@@ -161,8 +142,8 @@ const Messages = () => {
           </button>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
-export default Messages;
+export default ResChatPage;

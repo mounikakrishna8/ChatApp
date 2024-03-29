@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 function SettingsButton() {
-  const user = useSelector((state) => state.user);
-  const email = useSelector((state) => state.email);
+  const user = useSelector((state) => state.user.user);
+  const email = useSelector((state) => state.user.email);
   const [changeUserName, setChangeUserName, closeUserName] =
     useOpenCloseModal(false);
   const [changePassWord, setChangePassWord, closePassword] =
@@ -37,7 +37,7 @@ function SettingsButton() {
         </div>
         <div className="fixed top-[35%] ml-[20%] text-white text-bold text-lg mt-5">
           <p>
-            Username: {user}{" "}
+            Username: {user}
             <button
               onClick={() => {
                 setChangeUserName(true);

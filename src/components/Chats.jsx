@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchChats, setSelectedChatId } from '../redux/actions/chatActions.js';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchChats, setSelectedChatId } from "../redux/actions/chatActions.js";
 // import { setFriendUsername } from '../redux/actions/friendsActions.js';
-import useOpenCloseModal from '../hooks/useOpenCloseModal.jsx';
-import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
-import AddFriendModal from '../modals/AddFriendModal.jsx';
-import axios from 'axios';
-import UserIcon from './UserIcon.jsx';
+import useOpenCloseModal from "../hooks/useOpenCloseModal.jsx";
+import MapsUgcOutlinedIcon from "@mui/icons-material/MapsUgcOutlined";
+import AddFriendModal from "../modals/AddFriendModal.jsx";
+import axios from "axios";
+import UserIcon from "./UserIcon.jsx";
 import {
   fetchFriends,
   setFriendUsername,
-} from '../redux/actions/friendsActions.js';
+} from "../redux/actions/friendsActions.js";
+import { useNavigate } from "react-router-dom";
 //Chats component
 const Chats = () => {
   const [showModal, setShowModal, closeModal] = useOpenCloseModal(false);
@@ -20,14 +21,23 @@ const Chats = () => {
   const friendsList = useSelector((state) => state.friend.friendsList);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // grabing all users
   useEffect(() => {
     if (friendsList) {
-      axios.get('/api/allUsers').then((res) => {
+      axios.get("/api/allUsers").then((res) => {
         dispatch(addAllUsers(res.data));
       });
     }
   }, [dispatch]);
+
+  function ScreenSize() {
+    const width = window.innerWidth;
+
+    if (width < 1024) {
+      navigate("/welcome2");
+    }
+  }
 
   useEffect(() => {
     if (userId) {
@@ -71,7 +81,10 @@ const Chats = () => {
           chats.map((chat) => (
             <button
               key={chat.chatId}
-              onClick={() => handleChatClick(chat.chatId, chat.user)}
+              onClick={() => {
+                handleChatClick(chat.chatId, chat.user);
+                ScreenSize();
+              }}
               className=" justify-center hover:font-bold"
             >
               <div className=" flex items-center space-x-4 text-xl ">

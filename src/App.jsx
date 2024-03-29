@@ -1,30 +1,35 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import React, { useEffect } from 'react';
-import LoginPage from './pages/LoginPage.jsx';
-import SettingsPage from './pages/SettingsPage.jsx';
-import WelcomePage from './pages/WelcomePage.jsx';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import SettingsPageResponsive from './pages/Responsive/SettingsPageResponsive.jsx';
-import { setUser } from './redux/actions/userActions.js';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React, { useEffect } from "react";
+import LoginPage from "./pages/LoginPage.jsx";
+import SettingsPage from "./pages/SettingsPage.jsx";
+import WelcomePage from "./pages/WelcomePage.jsx";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import SettingsPageResponsive from "./pages/Responsive/SettingsPageResponsive.jsx";
+import { setUser } from "./redux/actions/userActions.js";
+import ResChatPage from "./pages/Responsive/ResChatPage.jsx";
 // import ParticlesBackground from './components/ParticlesBackground';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <LoginPage />,
   },
   {
-    path: '/settings',
+    path: "/settings",
     element: <SettingsPage />,
   },
   {
-    path: '/welcome',
+    path: "/welcome",
     element: <WelcomePage />,
   },
   {
-    path: '/settings2',
+    path: "/settings2",
     element: <SettingsPageResponsive />,
+  },
+  {
+    path: "/welcome2",
+    element: <ResChatPage />,
   },
 ]);
 
@@ -33,7 +38,7 @@ export default function App() {
 
   useEffect(() => {
     async function checkUser() {
-      const res = await axios.post('/api/checkUser');
+      const res = await axios.post("/api/checkUser");
       if (res.data.success) {
         dispatch(setUser(res.data));
       }
