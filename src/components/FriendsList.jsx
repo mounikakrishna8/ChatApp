@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   fetchFriends,
   setFriendUsername,
-} from '../redux/actions/friendsActions.js';
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
-import Logout from '../components/Logout.jsx';
-import Settings from '../components/Settings.jsx';
-import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
-import GroupMessageModal from '../modals/GroupMessageModal.jsx';
-import useOpenCloseModal from '../hooks/useOpenCloseModal.jsx';
-import axios from 'axios';
-import { setSelectedChatId, createChat } from '../redux/actions/chatActions.js';
-import UserIcon from './UserIcon.jsx';
+} from "../redux/actions/friendsActions.js";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Logout from "../components/Logout.jsx";
+import Settings from "../components/Settings.jsx";
+import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
+import GroupMessageModal from "../modals/GroupMessageModal.jsx";
+import useOpenCloseModal from "../hooks/useOpenCloseModal.jsx";
+import axios from "axios";
+import { setSelectedChatId, createChat } from "../redux/actions/chatActions.js";
+import UserIcon from "./UserIcon.jsx";
 //friendsList component
 const FriendsList = () => {
   const [showModal, setShowModal, closeModal] = useOpenCloseModal(false);
@@ -25,16 +25,16 @@ const FriendsList = () => {
   const userId = useSelector((state) => state.user.userId);
 
   function SettingsPageResponsive() {
-    navigate('/settings2');
+    navigate("/settings2");
   }
 
   function ResponsiveLogoutButton() {
-    navigate('/');
+    navigate("/");
   }
 
   useEffect(() => {
     if (friendsList) {
-      axios.get('/api/allUsers').then((res) => {
+      axios.get("/api/allUsers").then((res) => {
         dispatch(fetchFriends(res.data));
       });
     }
@@ -50,14 +50,14 @@ const FriendsList = () => {
     } else {
       //create new chat
       try {
-        const response = await axios.post('/api/chats', {
+        const response = await axios.post("/api/chats", {
           senderId: userId,
           receiverId: friend.userId,
         });
         // dispatch(createChat(response.data));
         dispatch(setSelectedChatId(response.data.chatId));
       } catch (error) {
-        console.error('Error createing chat:', error);
+        console.error("Error createing chat:", error);
       }
     }
   };
@@ -89,7 +89,7 @@ const FriendsList = () => {
             return (
               <div
                 key={friend.userId}
-                className=" m-2 cursor-pointer hover:font-bold flex p-2"
+                className=" lg:m-2 lg:cursor-pointer lg:hover:font-bold lg:flex lg:p-2 xxs:hidden "
                 onClick={() => handleFriendClick(friend)}
               >
                 <UserIcon className="ml-2" userId={friend.userId} />
