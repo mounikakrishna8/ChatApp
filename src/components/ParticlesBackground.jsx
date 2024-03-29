@@ -1,10 +1,12 @@
 import particlesConfig from '../../particles.config';
-import { useEffect, useState } from 'react';
+import React from 'react';
+import { useEffect, useState, memo } from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 
 const ParticlesBackground = () => {
   const [init, setInit] = useState(false);
+
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -12,8 +14,9 @@ const ParticlesBackground = () => {
       setInit(true);
     });
   }, []);
+
   const particlesLoaded = (container) => {
-    console.log(container);
+    console.log('Particles loaded:', container);
   };
 
   return (
@@ -30,4 +33,4 @@ const ParticlesBackground = () => {
   );
 };
 
-export default ParticlesBackground;
+export default React.memo(ParticlesBackground);

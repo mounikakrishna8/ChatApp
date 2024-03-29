@@ -3,9 +3,9 @@ const particlesConfig = {
     color: {
       value: 0,
     },
-    // opacity: 1,
+    opacity: 1,
   },
-  // clear: true,
+  clear: true,
   fpsLimit: 120,
   interactivity: {
     events: {
@@ -25,7 +25,7 @@ const particlesConfig = {
       },
       repulse: {
         distance: 100,
-        duration: 1.4,
+        duration: 1.2,
       },
     },
   },
