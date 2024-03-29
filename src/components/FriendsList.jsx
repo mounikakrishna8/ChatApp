@@ -63,12 +63,12 @@ const FriendsList = () => {
   };
 
   return (
-    <div className="w-1/4 flex-none  ">
+    <div className="w-1/4 flex-none mt-14">
       <div className="lg:mt-10 lg:ml-10 text-white lg:text-xl lg:w-[80%] lg:flex lg:justify-between  xxs:hidden ">
         {/* <div className="border-2 border-red-400 rounded-lg hover:bg-gray-400 text-black bg-gray-100">
           <button>Add Friend</button>
         </div> */}
-        <div className="text-xl flex justify-center text-white font-bold p-2">
+        <div className="text-2xl flex justify-center text-white font-bold p-2">
           Friends List
         </div>
         <button

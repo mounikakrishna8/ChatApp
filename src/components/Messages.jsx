@@ -145,7 +145,7 @@ const Messages = () => {
       <div className="fixed bottom-2  flex items-center w-96 ">
         <Input
           className=" w-[100%]  ml-1.5 border  "
-          placeholder={`message ${user.username} here...`}
+          placeholder={`message ${friendsUsername} here...`}
           type="text"
           required
           // onChange={(e) => setSendMessage(e.target.value)}

@@ -47,7 +47,7 @@ const Chats = () => {
       <div>
         <div className=" flex">
           <UserIcon userId={userId} />
-          <span className="font-bold text-2xl text-red-700 ">{user} !</span>
+          <span className="font-bold text-2xl text-red-700 ml-2">{user} !</span>
           <button
             className="ml-2"
             title="New Message"
@@ -62,9 +62,11 @@ const Chats = () => {
         {/* <NewMessageModal onClose={closeModal} visible={showModal} /> */}
       </div>
       {/* division for Chats Title */}
-      <h2 className=" flex justify-center  mt-8 mb-6">Chats</h2>
+      <h2 className=" flex justify-center font-bold text-2xl mt-8 mb-6">
+        Chats
+      </h2>
       {/* Division for showing conversations */}
-      <div className="text-white font-bold p-5 h-[80%] mt-8 overflow-y-auto flex flex-col  space-y-5">
+      <div className="text-white p-5 h-[80%] mt-8 overflow-y-auto flex flex-col  space-y-5">
         {chats.length > 0 ? (
           chats.map((chat) => (
             <button
@@ -72,12 +74,9 @@ const Chats = () => {
               onClick={() => handleChatClick(chat.chatId, chat.user)}
               className=" justify-center hover:font-bold"
             >
-              <div className=" flex justify-center text-center ">
-                <UserIcon
-                  className=" mr-2 flex justify-center text-center"
-                  userId={chat.user.username}
-                />
-                <span className=" ml-2 flex justify-center text-center">
+              <div className=" flex items-center space-x-4 text-xl ">
+                <UserIcon className=" mr-2 " userId={chat.user.userId} />
+                <span className=" ml-2 ">
                   Conversation with {chat.user.username}
                 </span>
               </div>

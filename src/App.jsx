@@ -7,6 +7,8 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import SettingsPageResponsive from './pages/Responsive/SettingsPageResponsive.jsx';
 import { setUser } from './redux/actions/userActions.js';
+// import ParticlesBackground from './components/ParticlesBackground';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -40,6 +42,7 @@ export default function App() {
   }, [dispatch]);
   return (
     <>
+      {/* <ParticlesBackground /> */}
       <RouterProvider router={router} />
     </>
   );

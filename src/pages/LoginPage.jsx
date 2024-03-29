@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Input from '../components/Input';
 import { useDispatch } from 'react-redux';
+import ParticlesBackground from '../components/ParticlesBackground';
 
 export default function LoginPage() {
   const [showModal, setShowModal, closeModal] = useOpenCloseModal(false);
@@ -39,6 +40,7 @@ export default function LoginPage() {
   };
   return (
     <main className="bg-blue-400 h-screen justify-center flex flex-col items-center ">
+      <ParticlesBackground />
       <h1 className="flex flex-col items-center lg:text-6xl font-bold text-white p-5 sm:text-4xl sm:font-bold md:text-4xl xs:text-2xl xxs:text-xl">
         RambleOn - World's Best Chat App
       </h1>
