@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchChats, setSelectedChatId } from "../redux/actions/chatActions.js";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchChats, setSelectedChatId } from '../redux/actions/chatActions.js';
 // import { setFriendUsername } from '../redux/actions/friendsActions.js';
-import useOpenCloseModal from "../hooks/useOpenCloseModal.jsx";
-import MapsUgcOutlinedIcon from "@mui/icons-material/MapsUgcOutlined";
-import AddFriendModal from "../modals/AddFriendModal.jsx";
-import axios from "axios";
-import UserIcon from "./UserIcon.jsx";
+import useOpenCloseModal from '../hooks/useOpenCloseModal.jsx';
+import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
+import AddFriendModal from '../modals/AddFriendModal.jsx';
+import axios from 'axios';
+import UserIcon from './UserIcon.jsx';
 import {
   fetchFriends,
   setFriendUsername,
-} from "../redux/actions/friendsActions.js";
-import { useNavigate } from "react-router-dom";
+  addAllUsers,
+} from '../redux/actions/friendsActions.js';
+import { useNavigate } from 'react-router-dom';
 //Chats component
 const Chats = () => {
   const [showModal, setShowModal, closeModal] = useOpenCloseModal(false);
@@ -25,7 +26,7 @@ const Chats = () => {
   // grabing all users
   useEffect(() => {
     if (friendsList) {
-      axios.get("/api/allUsers").then((res) => {
+      axios.get('/api/allUsers').then((res) => {
         dispatch(addAllUsers(res.data));
       });
     }
@@ -35,7 +36,7 @@ const Chats = () => {
     const width = window.innerWidth;
 
     if (width < 1024) {
-      navigate("/welcome2");
+      navigate('/welcome2');
     }
   }
 
@@ -60,7 +61,7 @@ const Chats = () => {
           <span className="font-bold text-2xl text-red-700 ml-2">{user} !</span>
           <button
             className="ml-2"
-            title="New Message"
+            title="Add Friend"
             onClick={() => {
               setShowModal(true);
             }}
