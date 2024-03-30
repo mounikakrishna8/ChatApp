@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import socket from "../../socket.js";
 import UserIcon from "../../components/UserIcon";
+import { useNavigate } from "react-router-dom";
 import CallImage from "../../components/CallImage";
 
 const ResChatPage = () => {
@@ -21,6 +22,7 @@ const ResChatPage = () => {
   const friendsUsername = useSelector((state) => state.friend.friendUsername);
   const friendsList = useSelector((state) => state.friend.friendsList);
   const chats = useSelector((state) => state.chat.chats);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (selectedChatId) {
@@ -80,10 +82,22 @@ const ResChatPage = () => {
       .catch((error) => console.error("Error fetching messages:", error));
   };
 
+  function backToConversations() {
+    navigate("/welcome");
+  }
+
   return (
     <main className="bg-white w-full h-screen flex flex-col justify-center items-center ">
       <div className="fixed top-4 w-full h-[80px] bg-gray-100 rounded-full flex items-center justify-center">
         <section>
+          <div>
+            <button
+              className="xxs:fixed xxs:left-5 xxs:font-medium xxs:text-lg xxs:mt-1 lg:hidden"
+              onClick={backToConversations}
+            >
+              Back
+            </button>
+          </div>
           <UserIcon userId={selectedChatId?.user?.userId} />
         </section>
         <div>
