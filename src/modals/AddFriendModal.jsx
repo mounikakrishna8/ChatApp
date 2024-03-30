@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CreateIcon from '@mui/icons-material/Create';
 // import { addFriend } from '../redux/actions/friendsActions';
 import { useDispatch } from 'react-redux';
+import UserIcon from '../components/UserIcon';
 import axios from 'axios';
 
 export default function AddFriendModal({ visible, onClose }) {
@@ -30,11 +31,11 @@ export default function AddFriendModal({ visible, onClose }) {
 
   return (
     <>
-      <main className="flex fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-[1]  ">
-        <section className="bg-blue-400 py-16 px-16 rounded  lg:w-[40%] mx-16 my-16 xxs:w-[90%] flex flex-col">
+      <main className="flex fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-[1] overflow-auto ">
+        <section className="bg-blue-400 py-16 px-16 rounded  lg:w-[30%] mx-16 my-16 xxs:w-[90%] flex flex-col">
           <div className="flex w-96 rounded xxs:top-1">
             <input
-              className="border-2 border-red-400 rounded-lg lg:w-[80%] text-black xxs:w-full xxs:p-2"
+              className="border-2 border-black rounded-lg lg:w-[80%] text-black xxs:w-full xxs:p-2"
               type="search"
               name="search"
               id="search"
@@ -57,12 +58,17 @@ export default function AddFriendModal({ visible, onClose }) {
               return (
                 <div
                   key={person.userId}
-                  className="p-10 border-b-2 border-slate-600"
+                  className="p-10 border-b-2 border-slate-600 flex justify-evenly space-x-4  "
                 >
-                  <span>{person.fname}</span>
+                  <UserIcon
+                    className="hover:font-bold"
+                    userId={person.userId}
+                  />
+
+                  <span className="hover:font-bold">{person.fname}</span>
                   <button
                     onClick={() => handleAddFriend(person.userId)}
-                    className=" float-right border-2 border-red-400 rounded-lg hover:bg-gray-400 text-black bg-gray-100 "
+                    className=" float-right border-2 border-grsy-400 rounded-lg hover:bg-gray-400 text-black bg-gray-100 "
                   >
                     Add Friend
                   </button>

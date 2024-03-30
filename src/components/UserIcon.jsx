@@ -32,7 +32,7 @@ const UserIcon = ({ userId }) => {
   }
   return (
     <div
-      className={`user-icon ${iconColorClass} flex items-center justify-center rounded-full h-9 w-9 text-white`}
+      className={`user-icon ${iconColorClass} flex items-center justify-center rounded-full h-9 w-9 text-white shrink-0 hover:font-bold`}
     >
       {firstLetter}
     </div>
