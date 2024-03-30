@@ -24,18 +24,17 @@ function SettingsButton() {
 
   return (
     <>
-      <main className="xxs:bg-blue-400 xxs:h-screen xxs:flex ">
+      <main className="xxs:bg-blue-400 xxs:h-screen xxs:flex  ">
         <div className="text-white fixed top-[5%] ml-[5%]">
           <button onClick={BackToWelcomePage}>
             {<KeyboardBackspaceIcon fontSize="large" />}
           </button>
         </div>
-        <div className=" xxs:mt-10 xxs:ml-[40%] xxs:justify-center xxs:text-white">
+        <div className=" xxs:mt-10 xxs:ml-[40%] xxs:justify-center xxs:text-white ">
           {" "}
-          Hello,{" "}
-          <span className="font-bold text-2xl text-red-700">{user} !</span>
+          <span className="font-bold text-2xl text-red-700">{user}</span>
         </div>
-        <div className="fixed top-[35%] ml-[20%] text-white text-bold text-lg mt-5">
+        <div className="fixed top-[35%] ml-[20%] text-white text-bold text-lg mt-5 ">
           <p>
             Username: {user}
             <button

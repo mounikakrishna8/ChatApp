@@ -2,15 +2,15 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Input from '../../components/Input';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined.js';
-import {
-  fetchMessages,
-  createMessage,
-} from '../../redux/actions/messageActions';
-import axios from 'axios';
-import socket from '../../socket.js';
-import UserIcon from '../../components/UserIcon';
-import { useNavigate } from 'react-router-dom';
-import CallImage from '../../components/CallImage';
+import {fetchMessages, createMessage,} from "../../redux/actions/messageActions";
+import axios from "axios";
+import socket from "../../socket.js";
+import UserIcon from "../../components/UserIcon";
+import { useNavigate } from "react-router-dom";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import CallImage from "../../components/CallImage";
+
+
 
 const ResChatPage = () => {
   const dispatch = useDispatch();
@@ -95,7 +95,7 @@ const ResChatPage = () => {
               className="xxs:fixed xxs:left-5 xxs:font-medium xxs:text-lg xxs:mt-1 lg:hidden"
               onClick={backToConversations}
             >
-              Back
+              <KeyboardBackspaceIcon fontSize="large" />
             </button>
           </div>
           <UserIcon userId={selectedChatId?.user?.userId} />
