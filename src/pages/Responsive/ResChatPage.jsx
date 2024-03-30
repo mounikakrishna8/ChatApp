@@ -10,6 +10,7 @@ import axios from "axios";
 import socket from "../../socket.js";
 import UserIcon from "../../components/UserIcon";
 import { useNavigate } from "react-router-dom";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import CallImage from "../../components/CallImage";
 
 const ResChatPage = () => {
@@ -95,7 +96,7 @@ const ResChatPage = () => {
               className="xxs:fixed xxs:left-5 xxs:font-medium xxs:text-lg xxs:mt-1 lg:hidden"
               onClick={backToConversations}
             >
-              Back
+              <KeyboardBackspaceIcon fontSize="large" />
             </button>
           </div>
           <UserIcon userId={selectedChatId?.user?.userId} />

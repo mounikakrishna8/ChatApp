@@ -53,11 +53,11 @@ const Chats = () => {
   };
 
   return (
-    <main className="lg:mt-10 lg:ml-2 lg:text-white lg:text-lg lg:w-1/3 xxs:mt-10 xxs:ml-28 xxs:text-white ">
+    <main className="lg:mt-10 lg:ml-2 lg:text-white lg:text-lg lg:w-1/3 xxs:mt-10 xxs:ml-44 xxs:text-white ">
       <div>
         <div className=" flex">
           <UserIcon userId={userId} />
-          <span className="font-bold text-2xl text-red-700 ml-2">{user} !</span>
+          <span className="font-bold text-2xl text-red-700 ml-2">{user} </span>
           <button
             className="ml-2"
             title="New Message"
@@ -72,7 +72,7 @@ const Chats = () => {
         {/* <NewMessageModal onClose={closeModal} visible={showModal} /> */}
       </div>
       {/* division for Chats Title */}
-      <h2 className=" flex justify-center font-bold text-2xl mt-8 mb-6">
+      <h2 className=" lg:flex lg:justify-center lg:font-bold lg:text-2xl lg:mt-8 lg:mb-6 xxs:hidden">
         Chats
       </h2>
       {/* Division for showing conversations */}
