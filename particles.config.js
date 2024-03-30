@@ -25,7 +25,7 @@ const particlesConfig = {
       },
       repulse: {
         distance: 100,
-        duration: 1.2,
+        duration: 0.8,
       },
     },
   },

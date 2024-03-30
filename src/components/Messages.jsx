@@ -1,15 +1,15 @@
-import React, { useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Input from "../components/Input.jsx";
-import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
-import CallImage from "../components/CallImage.jsx";
+import React, { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Input from '../components/Input.jsx';
+import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+import CallImage from '../components/CallImage.jsx';
 import {
   fetchMessages,
   createMessage,
-} from "../redux/actions/messageActions.js";
-import axios from "axios";
-import socket from "../socket.js";
-import UserIcon from "./UserIcon.jsx";
+} from '../redux/actions/messageActions.js';
+import axios from 'axios';
+import socket from '../socket.js';
+import UserIcon from './UserIcon.jsx';
 
 const Messages = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Messages = () => {
   const friendsUsername = useSelector((state) => state.friend.friendUsername);
   const friendsList = useSelector((state) => state.friend.friendsList);
   const chats = useSelector((state) => state.chat.chats);
-  console.log("messages:", messages);
+  console.log('messages:', messages);
   //useEffect to get the chat
   useEffect(() => {
     if (selectedChatId) {
@@ -30,7 +30,7 @@ const Messages = () => {
         .then((res) => {
           dispatch(fetchMessages(res.data));
         })
-        .catch((error) => console.error("Error fetching messages:", error));
+        .catch((error) => console.error('Error fetching messages:', error));
       // Fetch messages for the selected chat
     }
   }, [selectedChatId, dispatch]);
@@ -38,7 +38,7 @@ const Messages = () => {
   const selectedChat = chats.find((chat) => {
     return chat.chatId === selectedChatId;
   });
-  console.log("selectedChat:", selectedChat);
+  console.log('selectedChat:', selectedChat);
 
   useEffect(() => {
     const handleMessageReceive = (data) => {
@@ -46,10 +46,10 @@ const Messages = () => {
     };
 
     // Listen for 'receive_message' event and handle it with handleMessageReceive
-    socket.on("receive_message", handleMessageReceive);
+    socket.on('receive_message', handleMessageReceive);
     // Return a cleanup callback to turn off the event listener when the component unmounts
     return () => {
-      socket.off("receive_message", handleMessageReceive);
+      socket.off('receive_message', handleMessageReceive);
       // socket.disconnect();
     };
   }, [dispatch]);
@@ -65,12 +65,12 @@ const Messages = () => {
         text: newMessageRef.current.value,
         message: newMessageRef.current.value,
       };
-      await axios.post("/api/message", payload);
-      socket.emit("send_message", payload);
-      newMessageRef.current.value = "";
+      await axios.post('/api/message', payload);
+      socket.emit('send_message', payload);
+      newMessageRef.current.value = '';
       fetchUpdatedMessages();
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.error('Error sending message:', error);
     }
   };
 
@@ -80,9 +80,9 @@ const Messages = () => {
       .then((res) => {
         dispatch(fetchMessages(res.data));
       })
-      .catch((error) => console.error("Error fetching messages:", error));
+      .catch((error) => console.error('Error fetching messages:', error));
   };
-  console.log("messages:", messages);
+  console.log('messages:', messages);
   return (
     <div className="bg-white lg:w-2/3 lg:h-screen lg:flex lg:flex-col lg:justify-center lg:items-center md: hidden">
       {/* other user display */}
@@ -101,9 +101,7 @@ const Messages = () => {
         </div>
         {/* call button */}
         <div>
-          <button>
-            <CallImage />
-          </button>
+          <button>{/* <CallImage /> */}</button>
         </div>
       </div>
       {/* messages display area */}
@@ -114,7 +112,7 @@ const Messages = () => {
               <div key={msg.messageId} className="flex flex-col mb-6">
                 <div
                   className={`flex items-center ${
-                    userId === msg.userId ? "justify-end" : "justify-start"
+                    userId === msg.userId ? 'justify-end' : 'justify-start'
                   }`}
                 >
                   {userId !== msg.userId && <UserIcon userId={msg.userId} />}
@@ -123,8 +121,8 @@ const Messages = () => {
                     className={`max-w-[80%] rounderd-b-xl p-4 mb-6 
           ${
             userId === msg.userId
-              ? "bg-orange-400 text-white rounded-tl-xl mr-2"
-              : "bg-blue-400 text-white rounded-tr-xl ml-2 "
+              ? 'bg-orange-400 text-white rounded-tl-xl mr-2'
+              : 'bg-blue-400 text-white rounded-tr-xl ml-2 '
           }`}
                   >
                     {msg.message}
@@ -142,9 +140,9 @@ const Messages = () => {
       </div>
 
       {/* input for message */}
-      <div className="fixed bottom-2  flex items-center w-96 ">
+      <div className="fixed bottom-2  flex items-center w-[50%] ">
         <Input
-          className=" w-[100%]  ml-1.5 border  "
+          className=" w-full  ml-1.5 border text-center "
           placeholder={`message ${friendsUsername} here...`}
           type="text"
           required

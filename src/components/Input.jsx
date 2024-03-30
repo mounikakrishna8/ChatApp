@@ -10,14 +10,14 @@ export default function Input({
   newMessage,
 }) {
   return (
-    <div className={`lg:flex lg:items-center lg:w-96    ${className}`}>
+    <div className={`lg:flex lg:items-center lg:w-100    ${className}`}>
       {label && (
         <label className="lg:p-2 text-white lg:text-2xl lg:w-2/5 sm:p-2 sm:text-xl xs:text-lg xxs:text-lg inline-block w-full xs:text-center xxs:text-center">
           {label}
         </label>
       )}
       <input
-        className={`border-2 border-red-400 w-full rounded-md p-2 `}
+        className={`border-2 border-black w-full rounded-md p-2 `}
         onChange={onChange}
         value={value}
         placeholder={placeholder}

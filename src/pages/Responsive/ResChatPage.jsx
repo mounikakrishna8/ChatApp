@@ -1,17 +1,16 @@
-import React, { useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Input from "../../components/Input";
-import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined.js";
-import {
-  fetchMessages,
-  createMessage,
-} from "../../redux/actions/messageActions";
+import React, { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Input from '../../components/Input';
+import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined.js';
+import {fetchMessages, createMessage,} from "../../redux/actions/messageActions";
 import axios from "axios";
 import socket from "../../socket.js";
 import UserIcon from "../../components/UserIcon";
 import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import CallImage from "../../components/CallImage";
+
+
 
 const ResChatPage = () => {
   const dispatch = useDispatch();
@@ -32,7 +31,7 @@ const ResChatPage = () => {
         .then((res) => {
           dispatch(fetchMessages(res.data));
         })
-        .catch((error) => console.error("Error fetching messages:", error));
+        .catch((error) => console.error('Error fetching messages:', error));
       // Fetch messages for the selected chat
     }
   }, [selectedChatId, dispatch]);
@@ -47,10 +46,10 @@ const ResChatPage = () => {
     };
 
     // Listen for 'receive_message' event and handle it with handleMessageReceive
-    socket.on("receive_message", handleMessageReceive);
+    socket.on('receive_message', handleMessageReceive);
     // Return a cleanup callback to turn off the event listener when the component unmounts
     return () => {
-      socket.off("receive_message", handleMessageReceive);
+      socket.off('receive_message', handleMessageReceive);
       // socket.disconnect();
     };
   }, [dispatch]);
@@ -65,12 +64,12 @@ const ResChatPage = () => {
         text: newMessageRef.current.value,
         message: newMessageRef.current.value,
       };
-      await axios.post("/api/message", payload);
-      socket.emit("send_message", payload);
-      newMessageRef.current.value = "";
+      await axios.post('/api/message', payload);
+      socket.emit('send_message', payload);
+      newMessageRef.current.value = '';
       fetchUpdatedMessages();
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.error('Error sending message:', error);
     }
   };
 
@@ -80,11 +79,11 @@ const ResChatPage = () => {
       .then((res) => {
         dispatch(fetchMessages(res.data));
       })
-      .catch((error) => console.error("Error fetching messages:", error));
+      .catch((error) => console.error('Error fetching messages:', error));
   };
 
   function backToConversations() {
-    navigate("/welcome");
+    navigate('/welcome');
   }
 
   return (
@@ -112,22 +111,26 @@ const ResChatPage = () => {
               <div key={msg.messageId} className="flex flex-col mb-6">
                 <div
                   className={`flex items-center ${
-                    userId === msg.userId ? "justify-end" : "justify-start"
+                    userId === msg.userId ? 'justify-end' : 'justify-start'
                   }`}
                 >
-                  {userId !== msg.userId && <UserIcon userId={msg.userId} />}
+                  {userId !== msg.userId && (
+                    <UserIcon userId={msg.userId} className=" shrink-0" />
+                  )}
 
                   <div
                     className={`max-w-[80%] rounderd-b-xl p-4 mb-6 
           ${
             userId === msg.userId
-              ? "bg-orange-400 text-white rounded-tl-xl mr-2"
-              : "bg-blue-400 text-white rounded-tr-xl ml-2 "
+              ? 'bg-orange-400 text-white rounded-tl-xl mr-2'
+              : 'bg-blue-400 text-white rounded-tr-xl ml-2 '
           }`}
                   >
                     {msg.message}
                   </div>
-                  {userId === msg.userId && <UserIcon userId={msg.userId} />}
+                  {userId === msg.userId && (
+                    <UserIcon userId={msg.userId} className=" shrink-0" />
+                  )}
                 </div>
               </div>
             ))
